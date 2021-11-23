@@ -9,37 +9,48 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+public class myAdapter extends RecyclerView.Adapter<myAdapter.viewhold> {
 
-public class myAdapter extends RecyclerView.Adapter<myViewHolder> {
+    String data[];
 
-    ArrayList<Model> data;
-
-    public myAdapter(ArrayList<Model> data) {
+    public myAdapter(String[] data) {
         this.data = data;
     }
 
     @NonNull
     @Override
-    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public viewhold onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        LayoutInflater layoutInflater=LayoutInflater.from(parent.getContext());
-        View view=layoutInflater.inflate(R.layout.singlrow,parent,false);
-        return new  myViewHolder(view);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.singlrow,
+                parent,
+                false);
+        return new viewhold(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
-        holder.t1.setText(data.get(position).getHeader());
-        holder.t2.setText(data.get(position).getDesc());
-        holder.img.setImageResource(data.get(position).getImgname());
+    public void onBindViewHolder(@NonNull viewhold holder, int position) {
+
+        holder.tv.setText(data[position]);
 
     }
 
     @Override
     public int getItemCount() {
-
-        return data.size();
+        return data.length;
     }
+
+
+    class viewhold extends RecyclerView.ViewHolder {
+        ImageView img;
+        TextView tv;
+
+        public viewhold(@NonNull View itemView) {
+            super(itemView);
+            img = (ImageView) itemView.findViewById(R.id.img1);
+            tv = (TextView) itemView.findViewById(R.id.t1);
+        }
+    }
+
 }

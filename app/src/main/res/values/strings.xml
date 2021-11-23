@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">RecyclerView</string>
-    <string name="dummy">dummy</string>
-
-    <string name="description">descripton</string>
 </resources>
